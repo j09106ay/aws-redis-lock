@@ -1,0 +1,52 @@
+# server
+server:
+  port: 8080
+
+
+
+spring:
+  location:
+    name: aws-practice
+  datasource:
+    url: jdbc:h2:mem:mydb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  sql:
+    init:
+      mode: never
+  batch:
+    job:
+      enabled: true
+    initialize-schema: ALWAYS
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show_sql: false
+    hibernate:
+      ddl-auto: none
+      dialect: org.hibernate.dialect.SQLServer2012Dialect
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      hbm2ddl:
+        auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+  redis:
+    host: clustercfg.jay-redis-cluster.wrunxk.apse1.cache.amazonaws.com
+    password: redisauthtokenforlocal
+
+#Logging
+logging:
+  file:
+    name: logs/jay-aws-practice.log
+  level:
+    org.springframework.web: ERROR
+    com.aws.java.aws_practice: DEBUG
+    #org.hibernate: ERROR
